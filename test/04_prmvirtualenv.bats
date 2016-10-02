@@ -4,7 +4,7 @@ load_lib bats-assert
 load_lib bats-file
 
 setup() {
-    PWORKON_HOME="$(realpath test/pvirtualenvs)"
+    PWORKON_HOME="$(realpath -s test/pvirtualenvs)"
     source penvwrapper.sh
     first_penv=$(basename "$(mktemp -u)")
     other_penv=$(basename "$(mktemp -u)")
