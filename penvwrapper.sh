@@ -19,50 +19,54 @@ then
 fi
 
 pmkvirtualenv() {
-    local name=$1 && shift
-    "$PENVWRAPPER_PENV" "${PWORKON_HOME}/${name:?You must provide a name.}" "$@"
+    local name=${1:?You must provide a name.}
+    "${PENVWRAPPER_PENV:?You must specify a location for penv.pl.}" "${PWORKON_HOME:?You must specify a location for pvirtualenvs.}/${name}" "$@"
     pworkon "${name}"
 }
 
 pworkon() {
-    local name=$1 && shift
+    local name=$1
     if [ -z "${name}" ]; then
         plsvirtualenv
-    elif [ -s "${PWORKON_HOME}/${name}/bin/activate" ]; then
-        # shellcheck disable=SC1090 
-        . "${PWORKON_HOME:?PWORKON_HOME is not set, please set it.}/${name}/bin/activate"
+    elif [ -d "${PWORKON_HOME:?You must specify a location for pvirtualenvs.}/${name}" ]; then
+        if [ -s "${PWORKON_HOME}/${name}/bin/activate" ]; then
+            # shellcheck disable=SC1090
+            . "${PWORKON_HOME}/${name}/bin/activate"
+        else
+            echo "${name} is corrupted." && return 1
+        fi
     else
-        echo "${name} is not a pvirtualenv" && return 1
+        echo "${name} is not a pvirtualenv." && return 1
     fi
 }
 
 plsvirtualenv() {
     local penv
-    for penv in ${PWORKON_HOME}/*/; do
+    for penv in ${PWORKON_HOME:?You must specify a location for pvirtualenvs.}/*/; do
         if [ -d "${penv}" ]; then
-            basename "$penv"
+            basename "${penv}"
         fi
     done
 }
 
 pcdvirtualenv() {
-    local name=$1 && shift
-    if [ -n "${name}" ] && [ -d "${PWORKON_HOME}/${name}" ]; then
-        cd "${PWORKON_HOME:?PWORKON_HOME is not set, please set it.}/${name}" || return
+    local name=$1
+    if [ -n "${name:-}" ] && [ -d "${PWORKON_HOME:?You must specify a location for pvirtualenvs.}/${name}" ]; then
+        cd "${PWORKON_HOME}/${name}" || return
     elif [ -n "${VIRTUAL_ENV}" ] && [ "$(dirname "${VIRTUAL_ENV}")" = "${PWORKON_HOME}" ]; then
         cd "${VIRTUAL_ENV}" || return
     elif [ -z "${name}" ]; then
-        cd "${PWORKON_HOME:?PWORKON_HOME is not set, please set it.}" || return
+        cd "${PWORKON_HOME:?You must specify a location for pvirtualenvs.}" || return
     else
-        echo "${name} is not a pvirtualenv" && return 1
+        echo "${name} is not a pvirtualenv." && return 1
     fi
 }
 
 prmvirtualenv() {
-    local name=$1 && shift
-    if [ -d "${PWORKON_HOME}/${name:?Please specify an environment.}" ]; then
-        rm -rf "${PWORKON_HOME:?PWORKON_HOME is not set, please set it.}/${name}"
+    local name=${1:?You must specify an environment.}
+    if [ -d "${PWORKON_HOME:?You must specify a location for pvirtualenvs.}/${name}" ]; then
+        rm -rf "${PWORKON_HOME:?You must specify a location for pvirtualenvs.}/${name}"
     else
-        echo "${name} is not a pvirtualenv" && return 1
+        echo "${name} is not a pvirtualenv." && return 1
     fi
 }
