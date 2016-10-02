@@ -1,10 +1,10 @@
-sudo: false
 language: bash
 addons:
   apt:
     packages:
     - realpath
 before_install:
+  - which bats
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
   - ../bats/install.sh "${HOME}/.local"
