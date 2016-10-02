@@ -1,0 +1,10 @@
+language: bash
+before_install:
+  - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
+  - git clone --depth 1 https://github.com/sstephenson/bats ../bats
+  - ../bats/install.sh "${HOME}/.local"
+before_script:
+  - export PENVWRAPPER_PENV="../penv/penv.pl"
+  - export PATH="${HOME}/.local/bin:${PATH}"
+script:
+  - bats test
