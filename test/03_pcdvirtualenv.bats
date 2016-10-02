@@ -3,9 +3,8 @@ load_lib bats-support
 load_lib bats-assert
 
 setup() {
-    PWORKON_HOME="$(realpath -s test/pvirtualenvs)"
-    source penvwrapper.sh
-    penv=$(basename "$(mktemp -u)")
+    init_penvwrapper
+    penv=$(random_penv_name)
     run pmkvirtualenv ${penv}
 }
 

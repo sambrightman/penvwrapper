@@ -3,6 +3,15 @@ load_lib() {
     load "test_helper/${name}/load"
 }
 
+init_penvwrapper() {
+    PWORKON_HOME="$(realpath -s test/pvirtualenvs)"
+    source penvwrapper.sh
+}
+
+random_penv_name() {
+    basename "$(mktemp -u penv.XXXXXXXXXX)"
+}
+
 assert_no_output() {
     assert_output ""
 }
