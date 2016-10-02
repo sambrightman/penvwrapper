@@ -23,17 +23,16 @@ teardown() {
 @test "penv does not exist after removal" {
     run prmvirtualenv ${first_penv}
     assert_success
-    run plsvirtualenv
-    assert_success
-    refute_line ${first_penv}
+    run pworkon ${first_penv}
+    assert_failure
+    assert_line "${first_penv} is not a pvirtualenv."
 }
 
 @test "does not remove another penv" {
     run prmvirtualenv ${first_penv}
     assert_success
-    run plsvirtualenv
+    run pworkon ${other_penv}
     assert_success
-    assert_line ${other_penv}
 }
 
 @test "deactivate works after removing active penv" {
@@ -41,9 +40,7 @@ teardown() {
     assert_in_penv ${first_penv}
     run prmvirtualenv ${first_penv}
     assert_success
-    run plsvirtualenv
-    assert_success
-    refute_line ${first_penv}
+    assert_in_penv ${first_penv}
     deactivate
     assert_not_in_penv
 }

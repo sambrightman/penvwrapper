@@ -19,9 +19,8 @@ teardown() {
 @test "penv exists after creation" {
     run pmkvirtualenv ${penv}
     assert_success
-    run plsvirtualenv
+    run pworkon ${penv}
     assert_success
-    assert_output ${penv}
 }
 
 @test "penv activated after creation" {
