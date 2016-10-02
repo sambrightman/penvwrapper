@@ -1,5 +1,8 @@
 # penvwrapper — an anaemic virtualenvwrapper for Perl
 
+[![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](LICENSE)
+[![Travis Build Status](https://travis-ci.org/sambrightman/penvwrapper.svg?branch=master)](https://travis-ci.org/sambrightman/penvwrapper)
+
 `penvwrapper.sh` provides some utility functions for working
 with [`penv.pl`](https://github.com/jtopjian/penv), a simple,
 [`local::lib`](https://github.com/Perl-Toolchain-Gang/local-lib)-based
