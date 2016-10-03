@@ -9,9 +9,11 @@ matrix:
       osx_image: xcode8
 addons:
   apt:
+    sources:
+      - debian-sid
     packages:
-    - realpath
-    - shellcheck
+      - realpath
+      - shellcheck
 before_install:
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
