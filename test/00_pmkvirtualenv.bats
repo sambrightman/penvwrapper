@@ -8,7 +8,7 @@ setup() {
 }
 
 teardown() {
-    rm -rf test/pvirtualenvs
+    deinit_penvwrapper
 }
 
 @test "makes a penv" {

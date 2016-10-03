@@ -9,7 +9,7 @@ setup() {
 }
 
 teardown() {
-    rm -rf test/pvirtualenvs
+    deinit_penvwrapper
 }
 
 @test "no output if no penvs exist" {

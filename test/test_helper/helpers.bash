@@ -4,8 +4,12 @@ load_lib() {
 }
 
 init_penvwrapper() {
-    PWORKON_HOME="$(realpath -s test/pvirtualenvs)"
+    PWORKON_HOME="$(pwd)/test/pvirtualenvs"
     source penvwrapper.sh
+}
+
+deinit_penvwrapper() {
+    rm -rf "$(pwd)/test/pvirtualenvs"
 }
 
 random_penv_name() {

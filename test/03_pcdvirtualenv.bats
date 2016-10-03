@@ -9,7 +9,7 @@ setup() {
 }
 
 teardown() {
-    rm -rf test/pvirtualenvs
+    deinit_penvwrapper
 }
 
 @test "change directory to active penv if no penv is given" {

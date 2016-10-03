@@ -4,7 +4,7 @@ os_x_entry: &os_x_entry
   os: osx
   before_install:
     - brew update
-    - brew install coreutils shellcheck
+    - brew install shellcheck
 
 matrix:
   include:
@@ -17,10 +17,6 @@ matrix:
 
 addons:
   apt:
-    sources:
-      - precise
-    packages:
-      - realpath
     sources:
       - debian-sid
     packages:

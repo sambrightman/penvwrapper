@@ -12,7 +12,7 @@ setup() {
 }
 
 teardown() {
-    rm -rf test/pvirtualenvs
+    deinit_penvwrapper
 }
 
 @test "removes a penv" {
