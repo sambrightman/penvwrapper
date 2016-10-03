@@ -9,6 +9,8 @@ matrix:
       osx_image: xcode8
 addons:
   apt:
+    packages:
+      - realpath
     sources:
       - debian-sid
     packages:
@@ -17,8 +19,8 @@ before_install:
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
   - ../bats/install.sh "${HOME}/.local"
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update           ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install coreutils; fi
+  - test "$TRAVIS_OS_NAME" = "osx" && brew update
+  - test "$TRAVIS_OS_NAME" = "osx" && brew install coreutils shellcheck
 before_script:
   - export PENVWRAPPER_PENV="../penv/penv.pl"
   - export PATH="${HOME}/.local/bin:${PATH}"
