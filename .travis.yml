@@ -1,15 +1,20 @@
 language: bash
+
+os_x_entry: &os_x_entry
+  os: osx
+  before_install:
+    - brew update
+    - brew install coreutils shellcheck
+
 matrix:
   include:
     - os: linux
-    - os: osx
-    - os: osx
+    - *os_x_entry
+    - << : *os_x_entry
       osx_image: xcode7.1
-    - os: osx
+    - << : *os_x_entry
       osx_image: xcode8
-      before_install:
-        - brew update
-        - brew install coreutils shellcheck
+
 addons:
   apt:
     packages:
@@ -18,14 +23,16 @@ addons:
       - debian-sid
     packages:
       - shellcheck
-before_install:
+
+install:
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
   - ../bats/install.sh "${HOME}/.local"
-install:
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
+
 before_script:
   - export PENVWRAPPER_PENV="../penv/penv.pl"
   - export PATH="${HOME}/.local/bin:${PATH}"
+
 script:
   - bats test
   - shellcheck -s sh penvwrapper.sh
