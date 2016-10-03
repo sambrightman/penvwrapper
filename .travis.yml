@@ -19,8 +19,8 @@ before_install:
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
   - ../bats/install.sh "${HOME}/.local"
-  - test "$TRAVIS_OS_NAME" = "osx" && brew update
-  - test "$TRAVIS_OS_NAME" = "osx" && brew install coreutils shellcheck
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install coreutils shellcheck; fi
 before_script:
   - export PENVWRAPPER_PENV="../penv/penv.pl"
   - export PATH="${HOME}/.local/bin:${PATH}"
