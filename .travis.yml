@@ -12,7 +12,6 @@ addons:
     sources:
       - debian-sid
     packages:
-      - realpath
       - shellcheck
 before_install:
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
