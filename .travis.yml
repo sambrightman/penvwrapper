@@ -11,6 +11,7 @@ addons:
   apt:
     packages:
     - realpath
+    - shellcheck
 before_install:
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
@@ -22,3 +23,4 @@ before_script:
   - export PATH="${HOME}/.local/bin:${PATH}"
 script:
   - bats test
+  - shellcheck -s sh penvwrapper.sh
