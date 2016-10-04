@@ -9,13 +9,17 @@ for [Perl](https://www.perl.org). It is similar to — but less professional tha
 
 ## Installation
 
+* You should have `local::lib` installed.
+
+* You should either have [`penv.pl`](https://github.com/jtopjian/penv)
+  in your path or `export PENVWRAPPER_PENV="/path/to/penv.pl"`.
+
 ```bash
 git clone https://github.com/sambrightman/penvwrapper.git
 source penvwrapper/penvwrapper.sh
 ```
 
-* You should either have [`penv.pl`](https://github.com/jtopjian/penv)
-  in your path or `export PENVWRAPPER_PENV="/path/to/penv.pl"`.
+## Notes
 
 * `PWORKON_HOME` replaces `WORKON_HOME` as the directory to keep
   virtual environments in; export it before sourcing `penvwrapper.sh` if
