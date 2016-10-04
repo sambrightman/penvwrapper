@@ -26,7 +26,7 @@ teardown() {
 
 @test "change directory to specified penv" {
     pcdvirtualenv ${penv}
-    assert_equal "${PWD}" "${PWORKON_HOME}/${penv}" 
+    assert_equal "${PWD}" "${PWORKON_HOME}/${penv}"
 }
 
 @test "fails if penv does not exist" {
