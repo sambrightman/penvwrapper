@@ -5,7 +5,8 @@ load_lib bats-assert
 setup() {
     init_penvwrapper
     penv=$(random_penv_name)
-    run pmkvirtualenv ${penv}
+    pmkvirtualenv ${penv}
+    deactivate
 }
 
 teardown() {

@@ -70,3 +70,30 @@ prmvirtualenv() {
         echo "${name} is not a pvirtualenv." && return 1
     fi
 }
+
+plsperllib() {
+    local perl_lib_dir="${VIRTUAL_ENV:?No pvirtualenv is active.}/lib/perl5"
+    local name
+    name=$(basename "${VIRTUAL_ENV}")
+    if [ -d "${perl_lib_dir}" ]; then
+        ls "${perl_lib_dir}"
+    else
+        echo "${name} is corrupted." && return 1
+    fi
+}
+
+pcdperllib() {
+    local module=$1
+    local perl_lib_dir="${VIRTUAL_ENV:?No pvirtualenv is active.}/lib/perl5"
+    local name
+    name=$(basename "${VIRTUAL_ENV}")
+    local target="${perl_lib_dir}/${module//::/\/}"
+    if [ -d "${target}" ]; then
+        cd "${target}" || return
+    elif [ -d "${perl_lib_dir}" ]; then
+        echo "${module} is not installed in current pvirtualenv ${name}."
+        cd "${perl_lib_dir}" || return
+    else
+        echo "${name} is corrupted." && return 1
+    fi
+}
