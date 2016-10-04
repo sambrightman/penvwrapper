@@ -2,7 +2,6 @@ load test_helper/helpers
 load_lib bats-support
 load_lib bats-assert
 
-
 setup() {
     init_penvwrapper
     penv=$(random_penv_name)
@@ -17,7 +16,9 @@ teardown() {
 @test "lists some modules" {
     # maybe call cpan here and test the package is installed?
     pworkon ${penv}
-    plsperllib
+    run plsperllib
+    assert_success
+    assert [ -n "$output" ]
 }
 
 @test "fails if directory missing" {
