@@ -5,8 +5,7 @@ load_lib bats-assert
 setup() {
     init_penvwrapper
     penv=$(random_penv_name)
-    pmkvirtualenv ${penv}
-    deactivate
+    run pmkvirtualenv ${penv}
 }
 
 teardown() {
@@ -14,7 +13,8 @@ teardown() {
 }
 
 @test "lists some modules" {
-    pworkon ${penv}; assert_in_penv ${penv}
+    # maybe call cpan here and test the package is installed?
+    pworkon ${penv}
     run plsperllib
     assert_success
     assert [ -n "$output" ]
