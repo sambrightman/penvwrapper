@@ -32,5 +32,5 @@ before_script:
   - export PATH="${HOME}/.local/bin:${PATH}"
 
 script:
-  - bats test/05*
+  - bats test
   - shellcheck -s sh penvwrapper.sh
