@@ -8,6 +8,7 @@ setup() {
     other_penv=$(random_penv_name)
     pmkvirtualenv ${first_penv}
     pmkvirtualenv ${other_penv}
+    deactivate
 }
 
 teardown() {
