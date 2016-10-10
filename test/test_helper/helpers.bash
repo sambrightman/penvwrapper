@@ -38,8 +38,7 @@ assert_not_in_penv() {
     assert_path_not_contains "${PATH}" "${expected}/bin"
     assert_path_not_contains "${PERL5LIB}" "${expected}/lib/perl5"
     assert_path_not_contains "${PERL_LOCAL_LIB_ROOT}" "${expected}"
-    # FIXME: penv.pl needs updating to unset this
-    # assert_equal "${PERL_MB_OPT}" ""
+    assert_equal "${PERL_MB_OPT}" ""
     assert_equal "${PERL_MM_OPT}" ""
 }
 
