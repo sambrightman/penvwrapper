@@ -16,7 +16,7 @@ teardown() {
     skip "cpanm hangs"
     pmkvirtualenv ${penv}
     assert_in_penv ${penv}
-    run cpanm -q --notest ${module}
+    run cpanm --quiet --notest ${module}
     assert_success
     assert_module_installed ${module}
     deactivate
@@ -28,7 +28,7 @@ teardown() {
     skip "cpanm hangs"
     pmkvirtualenv ${penv}
     assert_in_penv ${penv}
-    run cpanm -q --notest ${module}
+    run cpanm --quiet --notest ${module}
     assert_success
     assert_success
     deactivate

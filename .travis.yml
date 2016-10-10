@@ -25,6 +25,7 @@ addons:
 install:
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
   - ../bats/install.sh "${HOME}/.local"
+  - cpanm --quiet --notest local::lib
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
 
 before_script:
