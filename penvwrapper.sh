@@ -78,7 +78,7 @@ plsperllib() {
     else
         local name
         name=$(basename "${VIRTUAL_ENV}")
-        echo "ls: ${name} is corrupted." && return 1
+        echo "${name} is corrupted." && return 1
     fi
 }
 
