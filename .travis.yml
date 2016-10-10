@@ -4,7 +4,7 @@ os_x_entry: &os_x_entry
   os: osx
   before_install:
     - brew update
-    - brew install shellcheck
+    - brew install shellcheck cpanminus
 
 matrix:
   include:
@@ -21,11 +21,12 @@ addons:
       - debian-sid
     packages:
       - shellcheck
+      - cpanminus
 
 install:
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
   - ../bats/install.sh "${HOME}/.local"
-  - cpan -T -i local::lib
+  - cpanm --quiet --notest local::lib
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
 
 before_script:
