@@ -73,12 +73,12 @@ prmvirtualenv() {
 
 plsperllib() {
     local perl_lib_dir="${VIRTUAL_ENV:?No pvirtualenv is active.}/lib/perl5"
-    local name
-    name=$(basename "${VIRTUAL_ENV}")
     if [ -d "${perl_lib_dir}" ]; then
         ls "${perl_lib_dir}"
     else
-        echo "${name} is corrupted." && return 1
+        local name
+        name=$(basename "${VIRTUAL_ENV}")
+        echo "ls: ${name} is corrupted." && return 1
     fi
 }
 

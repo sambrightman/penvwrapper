@@ -16,7 +16,7 @@ teardown() {
 @test "wtf" {
     pworkon ${penv}
     assert_in_penv ${penv}
-    run plsvirtualenv
+    run plsperllib
     assert_success
     assert [ -n "$output" ]
 }
