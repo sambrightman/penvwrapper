@@ -25,8 +25,7 @@ addons:
 install:
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
   - ../bats/install.sh "${HOME}/.local"
-  - echo y | cpan
-  - cpan -i local::lib
+  - echo y | cpan -i CPAN
   - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
 
 before_script:
