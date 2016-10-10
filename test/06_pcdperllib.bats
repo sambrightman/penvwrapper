@@ -6,7 +6,6 @@ setup() {
     init_penvwrapper
     penv=$(random_penv_name)
     pmkvirtualenv ${penv}
-    # cheating, again: maybe use cpan
     module="FakeModule"
     submodulename="SubModule"
     submodule="${module}::${submodule}"

@@ -21,17 +21,17 @@ fi
 pmkvirtualenv() {
     local name=${1:?You must provide a name.}
     "${PENVWRAPPER_PENV:?You must specify a location for penv.pl.}" "${PWORKON_HOME:?You must specify a location for pvirtualenvs.}/${name}" "$@"
-    pworkon "${name}"
+    pworkon "${name}" || return
 }
 
 pworkon() {
     local name=$1
     if [ -z "${name}" ]; then
-        plsvirtualenv
+        plsvirtualenv || return
     elif [ -d "${PWORKON_HOME:?You must specify a location for pvirtualenvs.}/${name}" ]; then
         if [ -s "${PWORKON_HOME}/${name}/bin/activate" ]; then
             # shellcheck disable=SC1090
-            . "${PWORKON_HOME}/${name}/bin/activate"
+            . "${PWORKON_HOME}/${name}/bin/activate" || return
         else
             echo "${name} is corrupted." && return 1
         fi

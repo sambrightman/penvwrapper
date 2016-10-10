@@ -14,11 +14,13 @@ teardown() {
 }
 
 @test "lists some modules" {
-    # maybe call cpan here and test the package is installed?
     pworkon ${penv}
     run plsperllib
     assert_success
-    assert [ -n "$output" ]
+    perl_arch=$(perl -MConfig -e 'print $Config{archname}')
+    perl_version=$(perl -MConfig -e 'print $Config{version}')
+    assert_line $perl_arch
+    assert_line $perl_version
 }
 
 @test "fails if directory missing" {

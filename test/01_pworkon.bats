@@ -64,6 +64,6 @@ teardown() {
 @test "does not deactivate due to failure" {
     pworkon ${first_penv}
     assert_in_penv ${first_penv}
-    pworkon "invalidpenv" || true 
+    pworkon "invalidpenv" || true
     assert_in_penv ${first_penv}
 }
