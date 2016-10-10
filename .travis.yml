@@ -26,7 +26,7 @@ install:
   - git clone --depth 1 https://github.com/sstephenson/bats ../bats
   - ../bats/install.sh "${HOME}/.local"
   - echo y | cpan -i CPAN
-  - git clone --depth 1 https://github.com/jtopjian/penv.git ../penv
+  - git clone --depth 1 https://github.com/sambrightman/penv.git ../penv
 
 before_script:
   - export PENVWRAPPER_PENV="../penv/penv.pl"
