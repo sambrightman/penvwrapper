@@ -7,9 +7,11 @@ setup() {
     penv=$(random_penv_name)
     pmkvirtualenv ${penv}
     module="FakeModule"
-    submodulename="SubModule"
-    submodule="${module}::${submodule}"
-    mkdir -p "${VIRTUAL_ENV}/lib/perl5/${module}/${submodulename}"
+    submodule="SubModule"
+    subsubmodule="SubSubModule"
+    namespace_module="${module}::${submodule}::${subsubmodule}"
+    mkdir -p "${VIRTUAL_ENV}/lib/perl5/${module}/${submodule}"
+    touch "${VIRTUAL_ENV}/lib/perl5/${module}/${submodule}/${subsubmodule}.pm"
     deactivate
 }
 
@@ -29,10 +31,10 @@ teardown() {
     assert_equal "${PWD}" "${VIRTUAL_ENV}/lib/perl5/${module}"
 }
 
-@test "change directory to sub-module" {
+@test "change directory to namespaced module" {
     pworkon ${penv}
-    pcdperllib ${module}
-    assert_equal "${PWD}" "${VIRTUAL_ENV}/lib/perl5/${module}"
+    pcdperllib ${namespace_module}
+    assert_equal "${PWD}" "${VIRTUAL_ENV}/lib/perl5/${module}/${submodule}"
 }
 
 @test "warns if module does not exist" {

@@ -85,9 +85,10 @@ plsperllib() {
 pcdperllib() {
     local module=$1
     local perl_lib_dir="${VIRTUAL_ENV:?No pvirtualenv is active.}/lib/perl5"
+    local module_prefix=${module%::*}
+    local target="${perl_lib_dir}/${module_prefix//::/\/}"
     local name
     name=$(basename "${VIRTUAL_ENV}")
-    local target="${perl_lib_dir}/${module//::/\/}"
     if [ -d "${target}" ]; then
         cd "${target}" || return
     elif [ -d "${perl_lib_dir}" ]; then
