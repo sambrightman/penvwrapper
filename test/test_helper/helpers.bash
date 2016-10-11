@@ -58,5 +58,5 @@ assert_module_installed() {
 assert_module_not_installed() {
     run perl -M$1 -e ';'
     assert_failure
-    assert_line --partial "Can't locate ${1//::/\/}.pm in @INC"
+    assert_line --partial "Can't locate ${1//:://}.pm in @INC"
 }

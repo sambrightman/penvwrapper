@@ -86,13 +86,13 @@ pcdperllib() {
     local module=$1
     local perl_lib_dir="${VIRTUAL_ENV:?No pvirtualenv is active.}/lib/perl5"
     local module_prefix=${module%::*}
-    local target="${perl_lib_dir}/${module_prefix//::/\/}"
+    local target="${perl_lib_dir}/${module_prefix//:://}"
     local name
     name=$(basename "${VIRTUAL_ENV}")
     if [ -d "${target}" ]; then
         cd "${target}" || return
     elif [ -d "${perl_lib_dir}" ]; then
-        echo "${module} (${target}) is not installed in current pvirtualenv ${name}."
+        echo "${module} is not installed in current pvirtualenv ${name}."
         cd "${perl_lib_dir}" || return
     else
         echo "${name} is corrupted." && return 1
