@@ -32,7 +32,7 @@ install:
 before_script:
   - export PENVWRAPPER_PENV="../penv/penv.pl"
   - echo $PATH
-  - cat .profile
+  - cat ~/.profile
 
 script:
   - bats test
