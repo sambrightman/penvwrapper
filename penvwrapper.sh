@@ -92,7 +92,7 @@ pcdperllib() {
     if [ -d "${target}" ]; then
         cd "${target}" || return
     elif [ -d "${perl_lib_dir}" ]; then
-        echo "${module} is not installed in current pvirtualenv ${name}."
+        echo "${module} (${target}) is not installed in current pvirtualenv ${name}."
         cd "${perl_lib_dir}" || return
     else
         echo "${name} is corrupted." && return 1
