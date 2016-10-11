@@ -32,6 +32,7 @@ install:
 before_script:
   - export PENVWRAPPER_PENV="../penv/penv.pl"
   - export PATH="${HOME}/.local/bin:${PATH}"
+  - echo $PATH
 
 script:
   - bats test
