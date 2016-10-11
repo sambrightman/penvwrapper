@@ -38,6 +38,8 @@ These should mostly work the same as their `virtualenvwrapper.sh` equivalents.
 * `plsvirtualenv`: list existing virtual environments.
 * `pcdvirtualenv`: change to the directory container the current or named virtual environment.
 * `prmvirtualenv`: remove an existing virtual environment.
+* `pcdperllib`: change to the directory of the libraries/a named library.
+* `plsperllib`: list the directory libraries.
 
 ## Hooks and Extensions
 
