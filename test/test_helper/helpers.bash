@@ -51,18 +51,12 @@ assert_path_contains() {
 }
 
 assert_module_installed() {
-    run plsperllib
-    assert_success
-    assert_line $1
-    run perl -M$1
+    run perl -M$1 -e ';'
     assert_success
 }
 
 assert_module_not_installed() {
-    run plsperllib
-    assert_success
-    refute_line "$1"
-    run perl -M$1
+    run perl -M$1 -e ';'
     assert_failure
     assert_line --partial "Can't locate ${1//::/\/}.pm in @INC"
 }
