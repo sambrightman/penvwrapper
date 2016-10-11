@@ -27,12 +27,10 @@ install:
   - ../bats/install.sh "${HOME}/.local"
   - git clone --depth 1 https://github.com/sambrightman/penv.git ../penv
   - curl -L https://cpanmin.us | perl - -l ~/perl5 --notest App::cpanminus local::lib
-  - perl -I ~/perl5/lib/perl5 -Mlocal::lib >> ~/.profile
 
 before_script:
   - export PENVWRAPPER_PENV="../penv/penv.pl"
-  - echo $PATH
-  - cat ~/.profile
+  - eval "$(perl -I${HOME}/perl5/lib/perl5 -Mlocal::lib)"
 
 script:
   - bats test
